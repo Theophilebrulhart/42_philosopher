@@ -1,12 +1,21 @@
-SRCS	= main.c
+SRCS	= main.c\
+			initialize.c\
+			utils.c\
+			create_fork.c\
+			error_exit.c\
+			create_threads.c\
+			philo_start.c\
+			action.c\
+			write.c\
+			time_to_die.c\
 
 OBJS	= $(SRCS:.c=.o)
 
-NAME	= philo_one
+NAME	= philo
 
 CLANG	= clang
 
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror -g -fsanitize=address 
 
 INCLUDE	= -lpthread
 

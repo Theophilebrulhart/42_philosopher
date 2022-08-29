@@ -6,7 +6,7 @@
 /*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:46:56 by theophilebr       #+#    #+#             */
-/*   Updated: 2022/08/12 17:15:45 by theophilebr      ###   ########.fr       */
+/*   Updated: 2022/08/25 17:51:11 by theophilebr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,11 @@
 void	philo_dead(t_main *main, int i)
 {
 	long long time;
-	//printf("Philosopher %d is dead ??\n", main->philo[i].philo_id + 1);
 	if (main->philo[i].eating == 1)
 		return ;
-	//printf("die_time : %lld\n", main->philo[i].die_time);
-	time = time_to_die(main, main->philo[i].die_time);
+	time = time_to_die(main->philo[i].die_time);
 	if (time == -1)
 		error_exit(main);
-	//printf("time : %lld\n", time);
 	if (time > main->state.die_time)
 	{
 		main->dead = 1;
@@ -34,7 +31,7 @@ void	philo_dead(t_main *main, int i)
 void	philo_sleep(t_main *main, int i)
 {
 	write_state(main, i, 3);
-	usleep(main->state.sleep_time * 1000);
+	my_usleep(main->state.sleep_time * 1000, main);
 	write_state(main, i, 4);
 	taking_fork(main, i);
 }
@@ -71,11 +68,11 @@ void	taking_fork(t_main *main, int i)
 	write_state(main, i, 1);
 	write_state(main, i, 2);
 	main->philo[i].eating = 1;
-	usleep(main->state.eat_time * 1000);
-	main->philo[i].eating = 0;
+	main->philo[i].die_time = get_time();
+	my_usleep(main->state.eat_time * 1000, main);
 	if (pthread_mutex_lock(&main->eat) != 0)
 		error_exit(main);
-	main->philo[i].die_time = get_time();
+	main->philo[i].eating = 0;
 	if (pthread_mutex_unlock(&main->eat) != 0)
 		error_exit(main);
 	if (main->state.max_eat > 0)

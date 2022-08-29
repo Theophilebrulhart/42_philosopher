@@ -6,7 +6,7 @@
 /*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:21:46 by theophilebr       #+#    #+#             */
-/*   Updated: 2022/08/15 14:17:29 by theophilebr      ###   ########.fr       */
+/*   Updated: 2022/08/25 17:51:27 by theophilebr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	create_threads(t_main *main)
 		if (pthread_create(&main->philo[i].thread, NULL, &start, (void *) main) != 0) 
 			return (1);
 		i++;
-		usleep(300);
+		my_usleep(50, main);
 	}
 	if (create_thread_checker(main))
 		return (1);

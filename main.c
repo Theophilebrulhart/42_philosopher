@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 14:44:46 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/07/27 16:29:45 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:24:29 by theophilebr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,18 @@
 
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
+	t_main	main;
+
+	main.t0 = get_time();
+	main.dead = 0;
+	main.all_eat = 0;
 	if (argc != 5 && argc != 6)
 		return (1);
-	printf("it works\n");
+	if (initialize(&main, argv))
+		return (0);
+	if (create_fork(&main))
+		error_exit(&main);
+	if (create_threads(&main))
+		error_exit(&main);
 	return (0);
 }

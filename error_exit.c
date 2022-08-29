@@ -1,39 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   error_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/03 14:34:14 by theophilebr       #+#    #+#             */
-/*   Updated: 2022/08/03 14:34:37 by theophilebr      ###   ########.fr       */
+/*   Created: 2022/08/03 16:03:50 by theophilebr       #+#    #+#             */
+/*   Updated: 2022/08/25 17:52:06 by theophilebr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *s)
+void	destroy_mutex(t_main *main)
 {
 	int	i;
-	int	sign;
-	int	convert;
 
 	i = 0;
-	sign = 1;
-	convert = 0;
-	while ((s[i] >= 9 && s[i] <= 13) || s[i] == ' ')
-		i++;
-	if (s[i] == '-' || s[i] == '+')
+	while (i < main->state.nbr_philo)
 	{
-		if (s[i] == '-')
-			sign *= -1;
+		pthread_mutex_destroy(&main->fork[i]);
 		i++;
 	}
-	while (s[i] >= '0' && s[i] <= '9')
+	pthread_mutex_destroy(&main->write);
+	pthread_mutex_destroy(&main->m_checker);
+}
+
+void	error_exit(t_main *main)
+{
+	int	i;
+
+	i = 0;
+	while (i < main->state.nbr_philo)
 	{
-		convert *= 10;
-		convert = convert + (s[i] - '0');
+		pthread_detach(&main->philo->thread[i]);
 		i++;
 	}
-	return (convert * sign);
+	my_usleep(1000, main);
+	if (main->philo)
+		free(main->philo);
+	if (main->fork)
+		free(main->fork);
+		destroy_mutex(main);
+	exit (0);
 }
