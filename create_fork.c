@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_fork.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:51:27 by theophilebr       #+#    #+#             */
-/*   Updated: 2022/08/25 18:02:39 by theophilebr      ###   ########.fr       */
+/*   Updated: 2022/09/01 11:09:45 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

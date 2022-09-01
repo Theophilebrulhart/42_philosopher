@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:46:56 by theophilebr       #+#    #+#             */
-/*   Updated: 2022/08/25 17:51:11 by theophilebr      ###   ########.fr       */
+/*   Updated: 2022/09/01 11:09:39 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	philo_dead(t_main *main, int i)
 {
-	long long time;
+	long long	time;
+
 	if (main->philo[i].eating == 1)
 		return ;
 	time = time_to_die(main->philo[i].die_time);
@@ -42,7 +43,6 @@ void	drop_fork(t_main *main, int i)
 		error_exit(main);
 	if (pthread_mutex_unlock(&main->fork[main->philo[i].right_fork]) != 0)
 		error_exit(main);
-	//printf("philosopher :   %d dropped fork\n", main->philo[i].philo_id);
 }
 
 void	max_eat_time(t_main *main, int i)
@@ -55,7 +55,6 @@ void	max_eat_time(t_main *main, int i)
 		write_state(main, i, 6);
 		error_exit(main);
 	}
-		
 }
 
 void	taking_fork(t_main *main, int i)

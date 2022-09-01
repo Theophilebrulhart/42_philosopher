@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:03:50 by theophilebr       #+#    #+#             */
-/*   Updated: 2022/08/25 17:52:06 by theophilebr      ###   ########.fr       */
+/*   Updated: 2022/09/01 11:11:16 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	error_exit(t_main *main)
 		free(main->philo);
 	if (main->fork)
 		free(main->fork);
-		destroy_mutex(main);
+	destroy_mutex(main);
 	exit (0);
 }

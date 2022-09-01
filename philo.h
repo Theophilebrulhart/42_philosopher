@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 14:46:03 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/08/25 17:50:35 by theophilebr      ###   ########.fr       */
+/*   Updated: 2022/09/01 11:12:38 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ typedef struct s_main	t_main;
 struct s_main
 {
 	t_philo			*philo;
-	t_state 		state;
+	t_state			state;
 	int				thread_id;
 	long long		t0;
 	int				all_eat;
 	int				dead;
 	pthread_t		checker;
 	pthread_mutex_t	*fork;
-	pthread_mutex_t write;
+	pthread_mutex_t	write;
 	pthread_mutex_t	eat;
 	pthread_mutex_t	m_checker;
 };
@@ -65,9 +65,9 @@ void		*start(void *arg);
 int			create_threads(t_main *main);
 void		taking_fork(t_main *main, int i);
 void		philo_eat(t_main *main, int i);
-void    	write_state(t_main *main, int i, int state);
+void		write_state(t_main *main, int i, int state);
 long long	time_to_die(long long die_time);
-long long	get_time();
+long long	get_time(void);
 void		*dead_checker(void *arg);
 void		philo_dead(t_main *main, int i);
 void		my_usleep(int time, t_main *main);
